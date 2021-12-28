@@ -1,0 +1,21 @@
+---
+import XElement from 'astro-xelement'
+---
+<XElement @do={(_, store)=> {
+	store.sofar = "";
+}}>
+	<XElement @is="input" 
+	@do={(element, store)=> {
+		element.addEventListener("input", (e) => {
+			display.textContent = e.target.value;
+			if(typeof e.data === 'string') store.sofar += e.data;
+		})
+	}}
+	></XElement>
+	<XElement @is="button" @click={(_, store)=> {
+		alert("Input So Far: " + store.sofar);
+	}}>Show So Far (Alert)</XElement>
+</XElement>
+
+<h1 id="display"></h1>
+<h1 id="displayInputSoFar"></h1>
